@@ -1,7 +1,9 @@
-package com.messagingtest.android;
+package com.messagingtest.android.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.messagingtest.android.R;
 
 public class MainActivity extends AppCompatActivity {
 
