@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 import android.preference.PreferenceManager;
 
+import com.firebase.jobdispatcher.FirebaseJobDispatcher;
+import com.firebase.jobdispatcher.GooglePlayDriver;
 import com.messagingtest.android.api.ServiceApi;
 import com.messagingtest.android.db.MyOpenHelper;
 
@@ -24,6 +26,7 @@ public class MyApp extends Application {
 
     private ServiceApi serviceApi;
     private MyOpenHelper openHelper;
+    private FirebaseJobDispatcher dispatcher;
 
     @Override
     public void onCreate() {
@@ -45,6 +48,11 @@ public class MyApp extends Application {
         this.serviceApi = retrofit.create(ServiceApi.class);
 
         this.openHelper = new MyOpenHelper(this);
+        this.dispatcher = new FirebaseJobDispatcher(new GooglePlayDriver(this));
+    }
+
+    public FirebaseJobDispatcher getDispatcher() {
+        return dispatcher;
     }
 
     public ServiceApi getServiceApi() {

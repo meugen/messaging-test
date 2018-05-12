@@ -28,7 +28,7 @@ public class PushService {
     private static final long MIN_PERIOD = TimeUnit.MINUTES.toMillis(1);
     private static final long MAX_PERIOD = TimeUnit.MINUTES.toMillis(10);
 
-    private static final String SERVICE_ACCOUNT_PATH = "/Users/meugen/messagingtest-fe1d5-firebase-adminsdk-eka0y-f556f53a77.json";
+    private static final String SERVICE_ACCOUNT_PATH = "/opt/messagingtest-fe1d5-firebase-adminsdk-eka0y-f556f53a77.json";
 
     private final WSClient client;
     private final Map<UUID, String> tokens;
@@ -42,8 +42,24 @@ public class PushService {
         this.executor = Executors.newScheduledThreadPool(2);
         this.number = new AtomicInteger(0);
 
+        scheduleResetNumber();
         initApp();
         runNext();
+    }
+
+    private void scheduleResetNumber() {
+        final Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        while (calendar.getTimeInMillis() < System.currentTimeMillis()) {
+            calendar.add(Calendar.DAY_OF_MONTH, 1);
+        }
+
+        executor.scheduleAtFixedRate(() -> number.set(0),
+                calendar.getTimeInMillis() - System.currentTimeMillis(),
+                TimeUnit.DAYS.toMillis(1), TimeUnit.MILLISECONDS);
     }
 
     public synchronized UUID setToken(final UUID uuid, final String token) {
@@ -98,6 +114,7 @@ public class PushService {
         for (String token : tokensCopy) {
             sendPush(token);
         }
+        runNext();
     }
 
     private void sendPush(final String token) {
@@ -114,7 +131,8 @@ public class PushService {
 
     private JsonNode buildBody(final String token, final int next) {
         final ObjectNode data = Json.newObject();
-        data.put("message", String.format(Locale.ENGLISH, "%1$td %1$tb - %2$04d", new Date(), next));
+        data.put("message", String.format(Locale.ENGLISH,
+                "%1$td %1$tb %1$tH:%1$tM - %2$04d", new Date(), next));
 
         final ObjectNode message = Json.newObject();
         message.put("token", token);
@@ -131,6 +149,5 @@ public class PushService {
         }
         Logger.debug(response.getStatusText());
         Logger.debug(response.getBody());
-        runNext();
     }
 }

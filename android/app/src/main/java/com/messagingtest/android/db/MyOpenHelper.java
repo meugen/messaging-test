@@ -6,6 +6,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.messagingtest.android.managers.events.AppEventsManager;
+import com.messagingtest.android.managers.events.MessageEvent;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,5 +56,7 @@ public class MyOpenHelper extends SQLiteOpenHelper {
         values.put("message", message);
         getWritableDatabase().insertOrThrow("messages",
                 null, values);
+
+        AppEventsManager.SHARED.post(new MessageEvent(message));
     }
 }
