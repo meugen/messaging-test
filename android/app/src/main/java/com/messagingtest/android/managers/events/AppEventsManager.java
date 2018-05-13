@@ -6,7 +6,6 @@ import android.support.annotation.AnyThread;
 import android.support.v4.util.ArrayMap;
 import android.util.Log;
 
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -73,7 +72,7 @@ public class AppEventsManager {
     private static class ObserverWrapper<T> {
 
         private final Class<T> clazz;
-        private final WeakReference<TypedObserver<T>> ref;
+        private final TypedObserver<T> observer;
 
         private final UUID key;
 
@@ -83,18 +82,13 @@ public class AppEventsManager {
                 final UUID key) {
             this.clazz = clazz;
             this.key = key;
-            this.ref = new WeakReference<>(observer);
+            this.observer = observer;
         }
 
         @AnyThread
         void update(
                 final AppEventsManager manager,
                 final Object arg) {
-            final TypedObserver<T> observer = ref.get();
-            if (observer == null) {
-                manager.unsubscribe(key);
-                return;
-            }
             if (clazz.isInstance(arg)) {
                 manager.handler.post(new Runnable() {
                     @Override

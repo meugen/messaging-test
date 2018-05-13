@@ -10,12 +10,13 @@ import com.messagingtest.android.managers.events.AppEventsManager;
 import com.messagingtest.android.managers.events.MessageEvent;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class MyOpenHelper extends SQLiteOpenHelper {
 
     private static final String NAME = "myapp";
-    private static final int VERSION = 1;
+    private static final int VERSION = 2;
 
     public MyOpenHelper(final Context context) {
         super(context, NAME, null, VERSION);
@@ -25,7 +26,8 @@ public class MyOpenHelper extends SQLiteOpenHelper {
     public void onCreate(final SQLiteDatabase db) {
         db.execSQL("CREATE TABLE messages (" +
                 " id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT," +
-                " message VARCHAR(200) NOT NULL)");
+                " message VARCHAR(200) NOT NULL," +
+                " timestamp BIGINTEGER NOT NULL)");
     }
 
     @Override
@@ -34,14 +36,17 @@ public class MyOpenHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public List<String> getMessages() {
+    public List<MessageEntity> getMessages() {
         Cursor cursor = null;
         try {
-            cursor = getWritableDatabase().rawQuery("SELECT message FROM messages", new String[0]);
+            cursor = getWritableDatabase().rawQuery("SELECT message, timestamp FROM messages", new String[0]);
 
-            final List<String> result = new ArrayList<>(cursor.getCount());
+            final List<MessageEntity> result = new ArrayList<>(cursor.getCount());
             while (cursor.moveToNext()) {
-                result.add(cursor.getString(0));
+                final MessageEntity entity = new MessageEntity();
+                entity.text = cursor.getString(0);
+                entity.timestamp = new Date(cursor.getLong(1));
+                result.add(entity);
             }
             return result;
         } finally {
@@ -52,11 +57,17 @@ public class MyOpenHelper extends SQLiteOpenHelper {
     }
 
     public void addMessage(final String message) {
+        final long timestamp = System.currentTimeMillis();
+
         final ContentValues values = new ContentValues();
         values.put("message", message);
+        values.put("timestamp", timestamp);
         getWritableDatabase().insertOrThrow("messages",
                 null, values);
 
-        AppEventsManager.SHARED.post(new MessageEvent(message));
+        final MessageEntity entity = new MessageEntity();
+        entity.text = message;
+        entity.timestamp = new Date(timestamp);
+        AppEventsManager.SHARED.post(new MessageEvent(entity));
     }
 }

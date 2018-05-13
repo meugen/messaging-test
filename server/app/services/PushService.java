@@ -72,6 +72,8 @@ public class PushService {
             newUuid = UUID.randomUUID();
         }
         tokens.put(newUuid, token);
+        Logger.debug(String.format("Got new token:\n  token: %s\n  uuid: %s",
+                token, newUuid));
         return newUuid;
     }
 
@@ -111,18 +113,23 @@ public class PushService {
         synchronized (this) {
             tokensCopy = new ArrayList<>(tokens.values());
         }
+        Logger.debug(String.format("Tokens count: %d", tokensCopy.size()));
+        final int nextNumber = number.incrementAndGet();
         for (String token : tokensCopy) {
-            sendPush(token);
+            sendPush(token, nextNumber);
         }
         runNext();
     }
 
-    private void sendPush(final String token) {
+    private void sendPush(final String token, final int nextNumber) {
+        Logger.debug(String.format("Sending push for token: %s", token));
         try {
+            final JsonNode body = buildBody(token, nextNumber);
+            Logger.debug(String.format("Body: %s", body));
             final String accessToken = getAccessToken();
             client.url("https://fcm.googleapis.com/v1/projects/messagingtest-fe1d5/messages:send")
                     .addHeader("Authorization", "Bearer " + accessToken)
-                    .post(buildBody(token, number.incrementAndGet()))
+                    .post(body)
                     .whenComplete(this::onPushSent);
         } catch (IOException e) {
             Logger.error(e.getMessage(), e);

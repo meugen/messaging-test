@@ -9,26 +9,28 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.messagingtest.android.R;
+import com.messagingtest.android.db.MessageEntity;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.MessageHolder> {
 
     private final LayoutInflater inflater;
-    private List<String> messages;
+    private List<MessageEntity> messages;
 
-    public MessagesAdapter(final Context context) {
+    MessagesAdapter(final Context context) {
         this.inflater = LayoutInflater.from(context);
         this.messages = new ArrayList<>();
     }
 
-    public void swapMessages(final List<String> messages) {
+    public void swapMessages(final List<MessageEntity> messages) {
         this.messages = messages;
         notifyDataSetChanged();
     }
 
-    public void addMessage(final String message) {
+    public void addMessage(final MessageEntity message) {
         messages.add(message);
         notifyItemInserted(messages.size() - 1);
     }
@@ -44,7 +46,10 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
 
     @Override
     public void onBindViewHolder(@NonNull final MessageHolder holder, final int position) {
-        holder.message.setText(messages.get(position));
+        final MessageEntity entity = messages.get(position);
+        holder.message.setText(entity.text);
+        holder.timestamp.setText(DateFormat.getDateTimeInstance(
+                DateFormat.MEDIUM, DateFormat.MEDIUM).format(entity.timestamp));
     }
 
     @Override
@@ -54,11 +59,13 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
 
     static class MessageHolder extends RecyclerView.ViewHolder {
 
-        private final TextView message;
+        final TextView message;
+        final TextView timestamp;
 
         MessageHolder(final View itemView) {
             super(itemView);
             this.message = itemView.findViewById(R.id.message);
+            this.timestamp = itemView.findViewById(R.id.timestamp);
         }
     }
 }
