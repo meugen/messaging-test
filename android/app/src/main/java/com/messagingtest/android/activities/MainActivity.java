@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         this.key = AppEventsManager.SHARED.subscribeToEvent(MessageEvent.class, new TypedObserver<MessageEvent>() {
             @Override
             public void onUpdate(final MessageEvent event) {
-                adapter.addMessage(event.message);
+                adapter.addMessage(event.entity);
             }
         });
     }
