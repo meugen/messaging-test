@@ -14,7 +14,9 @@
         android:textAppearance="?attr/textAppearanceListItem"
         android:gravity="center_vertical"
         android:id="@+id/message"
-        tools:text="Text"/>
+        tools:text="Text"
+        android:maxLines="2"
+        android:ellipsize="end"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -22,6 +24,8 @@
         android:textAppearance="?attr/textAppearanceListItemSmall"
         android:textColor="@android:color/darker_gray"
         android:id="@+id/timestamp"
-        tools:text="Timestamp"/>
+        tools:text="Timestamp"
+        android:lines="1"
+        android:ellipsize="end"/>
 
 </LinearLayout>
