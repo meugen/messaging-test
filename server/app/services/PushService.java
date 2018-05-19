@@ -15,6 +15,8 @@ import play.libs.ws.WSResponse;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -34,12 +36,14 @@ public class PushService {
     private final Map<UUID, String> tokens;
     private final ScheduledExecutorService executor;
     private final AtomicInteger number;
+    private final DateFormat dateFormat;
 
     @Inject
     public PushService(final WSClient client) {
         this.client = client;
         this.tokens = new HashMap<>();
         this.executor = Executors.newScheduledThreadPool(2);
+        this.dateFormat = new SimpleDateFormat("dd MMMM, HH:mm:ss.SSS", Locale.ENGLISH);
         this.number = new AtomicInteger(0);
 
         scheduleResetNumber();
@@ -49,7 +53,7 @@ public class PushService {
 
     private void scheduleResetNumber() {
         final Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR, 0);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
         calendar.set(Calendar.MINUTE, 0);
         calendar.set(Calendar.SECOND, 0);
         calendar.set(Calendar.MILLISECOND, 0);
@@ -139,7 +143,7 @@ public class PushService {
     private JsonNode buildBody(final String token, final int next) {
         final ObjectNode data = Json.newObject();
         data.put("message", String.format(Locale.ENGLISH,
-                "%1$td %1$tb %1$tH:%1$tM - %2$04d", new Date(), next));
+                "%1$s - %2$04d", dateFormat.format(new Date()), next));
 
         final ObjectNode message = Json.newObject();
         message.put("token", token);
