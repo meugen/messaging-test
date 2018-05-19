@@ -1,0 +1,107 @@
+2018-05-12 22:05:50,000 [DEBUG] from application in play-dev-mode-akka.actor.default-dispatcher-2 - Next run in ~6 min
+2018-05-12 22:05:50,151 [INFO] from play.api.http.EnabledFilters in play-dev-mode-akka.actor.default-dispatcher-2 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+
+    play.filters.csrf.CSRFFilter
+    play.filters.headers.SecurityHeadersFilter
+    play.filters.hosts.AllowedHostsFilter
+
+2018-05-12 22:05:50,316 [INFO] from play.api.Play in play-dev-mode-akka.actor.default-dispatcher-2 - Application started (Dev)
+2018-05-12 22:12:12,855 [DEBUG] from application in pool-10-thread-1 - Next run in ~1 min
+2018-05-12 22:14:05,267 [DEBUG] from application in pool-10-thread-1 - Next run in ~6 min
+2018-05-12 22:20:16,092 [DEBUG] from application in pool-10-thread-1 - Next run in ~1 min
+2018-05-12 22:20:16,340 [DEBUG] from application in ForkJoinPool.commonPool-worker-2 - Bad Request
+2018-05-12 22:20:16,341 [DEBUG] from application in ForkJoinPool.commonPool-worker-2 - {
+  "error": {
+    "code": 400,
+    "message": "Request contains an invalid argument.",
+    "status": "INVALID_ARGUMENT",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.BadRequest",
+        "fieldViolations": [
+          {
+            "field": "message",
+            "description": "Target of the message is not set."
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.firebase.fcm.v1.FcmError",
+        "errorCode": "INVALID_ARGUMENT"
+      }
+    ]
+  }
+}
+
+2018-05-12 22:21:44,488 [DEBUG] from application in pool-10-thread-1 - Next run in ~8 min
+2018-05-12 22:21:44,677 [DEBUG] from application in ForkJoinPool.commonPool-worker-0 - OK
+2018-05-12 22:21:44,677 [DEBUG] from application in ForkJoinPool.commonPool-worker-0 - {
+  "name": "projects/messagingtest-fe1d5/messages/0:1526152904645238%66752d6af9fd7ecd"
+}
+
+2018-05-12 22:30:30,484 [DEBUG] from application in pool-10-thread-1 - Next run in ~6 min
+2018-05-12 22:30:30,689 [DEBUG] from application in ForkJoinPool.commonPool-worker-1 - OK
+2018-05-12 22:30:30,689 [DEBUG] from application in ForkJoinPool.commonPool-worker-1 - {
+  "name": "projects/messagingtest-fe1d5/messages/0:1526153430662097%66752d6af9fd7ecd"
+}
+
+2018-05-12 22:37:26,880 [DEBUG] from application in pool-10-thread-1 - Next run in ~9 min
+2018-05-12 22:37:27,106 [DEBUG] from application in ForkJoinPool.commonPool-worker-2 - OK
+2018-05-12 22:37:27,106 [DEBUG] from application in ForkJoinPool.commonPool-worker-2 - {
+  "name": "projects/messagingtest-fe1d5/messages/0:1526153847076924%66752d6af9fd7ecd"
+}
+
+2018-05-12 22:47:21,443 [DEBUG] from application in pool-10-thread-1 - Next run in ~4 min
+2018-05-12 22:47:21,697 [DEBUG] from application in ForkJoinPool.commonPool-worker-3 - OK
+2018-05-12 22:47:21,697 [DEBUG] from application in ForkJoinPool.commonPool-worker-3 - {
+  "name": "projects/messagingtest-fe1d5/messages/0:1526154441646604%66752d6af9fd7ecd"
+}
+
+2018-05-12 22:52:17,766 [DEBUG] from application in pool-10-thread-1 - Next run in ~8 min
+2018-05-12 22:52:17,984 [DEBUG] from application in ForkJoinPool.commonPool-worker-0 - OK
+2018-05-12 22:52:17,984 [DEBUG] from application in ForkJoinPool.commonPool-worker-0 - {
+  "name": "projects/messagingtest-fe1d5/messages/0:1526154737946335%66752d6af9fd7ecd"
+}
+
+2018-05-12 23:01:09,473 [DEBUG] from application in pool-10-thread-1 - Next run in ~7 min
+2018-05-12 23:01:09,692 [DEBUG] from application in ForkJoinPool.commonPool-worker-1 - OK
+2018-05-12 23:01:09,692 [DEBUG] from application in ForkJoinPool.commonPool-worker-1 - {
+  "name": "projects/messagingtest-fe1d5/messages/0:1526155269662483%66752d6af9fd7ecd"
+}
+
+2018-05-12 23:09:04,690 [DEBUG] from application in pool-10-thread-1 - Next run in ~3 min
+2018-05-12 23:09:04,914 [DEBUG] from application in ForkJoinPool.commonPool-worker-2 - OK
+2018-05-12 23:09:04,914 [DEBUG] from application in ForkJoinPool.commonPool-worker-2 - {
+  "name": "projects/messagingtest-fe1d5/messages/0:1526155744870561%66752d6af9fd7ecd"
+}
+
+2018-05-12 23:12:18,371 [DEBUG] from application in pool-10-thread-1 - Next run in ~7 min
+2018-05-12 23:12:18,608 [DEBUG] from application in ForkJoinPool.commonPool-worker-3 - OK
+2018-05-12 23:12:18,608 [DEBUG] from application in ForkJoinPool.commonPool-worker-3 - {
+  "name": "projects/messagingtest-fe1d5/messages/0:1526155938568153%66752d6af9fd7ecd"
+}
+
+2018-05-12 23:19:26,720 [DEBUG] from application in pool-10-thread-1 - Next run in ~3 min
+2018-05-12 23:19:26,923 [DEBUG] from application in ForkJoinPool.commonPool-worker-1 - OK
+2018-05-12 23:19:26,923 [DEBUG] from application in ForkJoinPool.commonPool-worker-1 - {
+  "name": "projects/messagingtest-fe1d5/messages/0:1526156366895535%66752d6af9fd7ecd"
+}
+
+2018-05-12 23:22:33,144 [DEBUG] from application in pool-10-thread-1 - Next run in ~4 min
+2018-05-12 23:22:33,300 [DEBUG] from application in ForkJoinPool.commonPool-worker-2 - OK
+2018-05-12 23:22:33,300 [DEBUG] from application in ForkJoinPool.commonPool-worker-2 - {
+  "name": "projects/messagingtest-fe1d5/messages/0:1526156553264446%66752d6af9fd7ecd"
+}
+
+2018-05-12 23:27:11,202 [DEBUG] from application in pool-10-thread-1 - Next run in ~2 min
+2018-05-12 23:27:11,416 [DEBUG] from application in ForkJoinPool.commonPool-worker-3 - OK
+2018-05-12 23:27:11,416 [DEBUG] from application in ForkJoinPool.commonPool-worker-3 - {
+  "name": "projects/messagingtest-fe1d5/messages/0:1526156831385574%66752d6af9fd7ecd"
+}
+
+2018-05-12 23:30:08,123 [DEBUG] from application in pool-10-thread-1 - Next run in ~6 min
+2018-05-12 23:30:08,287 [DEBUG] from application in ForkJoinPool.commonPool-worker-0 - OK
+2018-05-12 23:30:08,288 [DEBUG] from application in ForkJoinPool.commonPool-worker-0 - {
+  "name": "projects/messagingtest-fe1d5/messages/0:1526157008251083%66752d6af9fd7ecd"
+}
+
