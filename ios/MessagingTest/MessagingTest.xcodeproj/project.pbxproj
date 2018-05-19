@@ -13,6 +13,7 @@
 		85940E2D20AFEC7A00BA7024 /* MessagingTest.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 85940E2B20AFEC7A00BA7024 /* MessagingTest.xcdatamodeld */; };
 		85940E2F20AFEC7B00BA7024 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85940E2E20AFEC7B00BA7024 /* Assets.xcassets */; };
 		85940E3220AFEC7B00BA7024 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85940E3020AFEC7B00BA7024 /* LaunchScreen.storyboard */; };
+		85940E3A20AFF19900BA7024 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85940E3920AFF19900BA7024 /* GoogleService-Info.plist */; };
 		DF45B0FFA48DBA304E71F4E7 /* Pods_MessagingTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39E3855927D6CF28E92006CD /* Pods_MessagingTest.framework */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +28,7 @@
 		85940E2E20AFEC7B00BA7024 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		85940E3120AFEC7B00BA7024 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		85940E3320AFEC7B00BA7024 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		85940E3920AFF19900BA7024 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C16DD9C9983533080D33889B /* Pods-MessagingTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MessagingTest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MessagingTest/Pods-MessagingTest.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -72,6 +74,7 @@
 		85940E2320AFEC7A00BA7024 /* MessagingTest */ = {
 			isa = PBXGroup;
 			children = (
+				85940E3920AFF19900BA7024 /* GoogleService-Info.plist */,
 				85940E2420AFEC7A00BA7024 /* AppDelegate.swift */,
 				85940E2620AFEC7A00BA7024 /* ViewController.swift */,
 				85940E2820AFEC7A00BA7024 /* Main.storyboard */,
@@ -153,6 +156,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				85940E3220AFEC7B00BA7024 /* LaunchScreen.storyboard in Resources */,
+				85940E3A20AFF19900BA7024 /* GoogleService-Info.plist in Resources */,
 				85940E2F20AFEC7B00BA7024 /* Assets.xcassets in Resources */,
 				85940E2A20AFEC7A00BA7024 /* Main.storyboard in Resources */,
 			);
@@ -372,7 +376,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = MessagingTest/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.messagintest.ios.MessagingTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -387,7 +394,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = MessagingTest/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.messagintest.ios.MessagingTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
